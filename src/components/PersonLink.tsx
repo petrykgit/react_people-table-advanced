@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useSearchParams } from 'react-router-dom';
 import { Person } from '../types';
 
 interface PersonLinkProps {
@@ -11,8 +11,12 @@ export const PersonLink: React.FC<PersonLinkProps> = ({
   person,
   className,
 }) => {
-  // const navigate = useNavigate();
-  const toPath = `/people/${person.slug}`;
+  const [searchParams] = useSearchParams();
+
+  const toPath = {
+    pathname: `/people/${person.slug}`,
+    search: searchParams.toString(),
+  };
 
   return (
     <NavLink to={toPath} className={className}>

@@ -5,12 +5,17 @@ import { Arrows } from './Arrows';
 import { Link } from 'react-router-dom';
 import { getSearchWith } from '../utils/searchHelper';
 
+interface SortParams {
+  sort: string | null;
+  order?: string | null;
+}
+
 /* eslint-disable jsx-a11y/control-has-associated-label */
 interface PeopleTableProps {
   people: Person[];
   slug?: string;
   searchParams: URLSearchParams;
-  toggleSortParams: (field: string) => {};
+  toggleSortParams: (field: string) => SortParams;
   sort: string | null;
   order: string | null;
 }

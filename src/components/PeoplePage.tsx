@@ -89,7 +89,17 @@ export const PeoplePage = () => {
       }
 
       if (query) {
-        return person.name.toLowerCase().includes(query.toLowerCase());
+        const normalizedQuery = query.toLowerCase();
+
+        const nameMatch = person.name.toLowerCase().includes(normalizedQuery);
+        const motherNameMatch = (person.motherName || '')
+          .toLowerCase()
+          .includes(normalizedQuery);
+        const fatherNameMatch = (person.fatherName || '')
+          .toLowerCase()
+          .includes(normalizedQuery);
+
+        return nameMatch || motherNameMatch || fatherNameMatch;
       }
 
       return true;
